@@ -8,6 +8,13 @@
             - [Login Request](#login-request)
             - [Login Response](#login-response)
 
+- [Sober Dinner Contract](#sober-dinner-contract)
+    - [Authentication](#authentication)
+        - [Register Request](#register-request)
+        - [Login Request](#login-request)
+        - [Authentication Response](#authentication-response)
+
+
 # Authentication
 ```js
 ### POST {{host}}/auth/register
