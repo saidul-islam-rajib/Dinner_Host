@@ -1,8 +1,11 @@
-using SoberDinner.Application.Services.Authentication;
+using SoberDinner.Application.Services;
+using SoberDinner.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+    builder.Services
+        .AddApplication()
+        .AddInfrastructure();
     builder.Services.AddControllers();
 }
 
