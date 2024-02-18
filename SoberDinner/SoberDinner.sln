@@ -15,9 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoberDinner.Infrastructure"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{25154CF6-1F81-4408-9A3A-78B469532737}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wheather", "Wheather", "{3BEC762F-2BFB-44B9-B07D-BD48173FC3A1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authentication", "Authentication", "{3BEC762F-2BFB-44B9-B07D-BD48173FC3A1}"
 	ProjectSection(SolutionItems) = preProject
-		GetForcasts.http = GetForcasts.http
+		Login.http = Login.http
+		Register.http = Register.http
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9377BAAB-9778-4C17-B934-A84DE20B6338}"

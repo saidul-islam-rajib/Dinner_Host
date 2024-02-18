@@ -17,8 +17,4 @@
     <ProjectReference Include="..\SoberDinner.Infrastructure\SoberDinner.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

@@ -24,7 +24,7 @@
 {
     "firstName":"Saidul Islam",
     "lastName":"Rajib",
-    "email":"saidul.is.rajib@gmail.com"
+    "email":"saidul.is.rajib@gmail.com",
     "password":"Test@123"
 }
 ```
@@ -35,7 +35,7 @@
     "id":"f47ac10b-58cc-4372-a567-0e02b2c3d479",
     "firstName":"Saidul Islam",
     "lastName":"Rajib",
-    "email":"saidul.is.rajib@gmail.com"
+    "email":"saidul.is.rajib@gmail.com",
     "token":"lorem....sdfsdf"
 }
 ```
@@ -48,7 +48,7 @@
 
 ```json
 {
-    "email":"saidul.is.rajib@gmail.com"
+    "email":"saidul.is.rajib@gmail.com",
     "password":"Test@123"
 }
 ```
@@ -59,7 +59,7 @@
     "id":"f47ac10b-58cc-4372-a567-0e02b2c3d479",
     "firstName":"Saidul Islam",
     "lastName":"Rajib",
-    "email":"saidul.is.rajib@gmail.com"
+    "email":"saidul.is.rajib@gmail.com",
     "token":"lorem....sdfsdf"
 }
 ```
