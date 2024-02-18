@@ -1,0 +1,17 @@
+
+#Steps
+1. dotnet new sln -o SoberDinner
+2. dotnet new webapi -o SoberDinner.API
+3. dotnet new classlib -o SoberDinner.Contracts
+4. dotnet new classlib -o SoberDinner.Infrastructure
+5. dotnet new classlib -o SoberDinner.Application
+6. dotnet new classlib -o SoberDinner.Domain
+
+# now, lets build the application and add all reference: 
+--> dotnet build
+--> add all the projects recursively : for /r %i in (*.csproj) do dotnet sln add "%i"
+--> dotnet add .\SoberDinner.API\ reference SoberDinner.Contracts SoberDinner.Application
+--> dotnet add SoberDinner.Infrastructure reference SoberDinner.Application
+--> dotnet add SoberDinner.Application reference SoberDinner.Domain
+--> dotnet add SoberDinner.API reference .\SoberDinner.Infrastructure
+--> dotnet build
