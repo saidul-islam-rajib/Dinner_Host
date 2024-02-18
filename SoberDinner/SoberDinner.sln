@@ -20,6 +20,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wheather", "Wheather", "{3B
 		GetForcasts.http = GetForcasts.http
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{9377BAAB-9778-4C17-B934-A84DE20B6338}"
+	ProjectSection(SolutionItems) = preProject
+		Api.md = Api.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,5 +57,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3BEC762F-2BFB-44B9-B07D-BD48173FC3A1} = {25154CF6-1F81-4408-9A3A-78B469532737}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07C0D10F-46D4-490B-92C8-5E258A10B18E}
 	EndGlobalSection
 EndGlobal
