@@ -3,23 +3,27 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoberDinner.API", "SoberDinner.API\SoberDinner.API.csproj", "{D46ED49F-0646-43E3-9CE6-AB24DADF0716}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoberDinner.API", "SoberDinner.API\SoberDinner.API.csproj", "{D46ED49F-0646-43E3-9CE6-AB24DADF0716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoberDinner.Application", "SoberDinner.Application\SoberDinner.Application.csproj", "{EEB12A30-00E8-4A26-95BD-6BD4D7F9E064}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoberDinner.Application", "SoberDinner.Application\SoberDinner.Application.csproj", "{EEB12A30-00E8-4A26-95BD-6BD4D7F9E064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoberDinner.Contracts", "SoberDinner.Contracts\SoberDinner.Contracts.csproj", "{4D62087B-76F7-4562-8094-626E9A2CAB83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoberDinner.Contracts", "SoberDinner.Contracts\SoberDinner.Contracts.csproj", "{4D62087B-76F7-4562-8094-626E9A2CAB83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoberDinner.Domain", "SoberDinner.Domain\SoberDinner.Domain.csproj", "{21C30E18-1BC3-47CA-9AD2-94C4917DF6FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoberDinner.Domain", "SoberDinner.Domain\SoberDinner.Domain.csproj", "{21C30E18-1BC3-47CA-9AD2-94C4917DF6FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoberDinner.Infrastructure", "SoberDinner.Infrastructure\SoberDinner.Infrastructure.csproj", "{9FD0F171-CCB2-4C25-BCF2-52FA59C870B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoberDinner.Infrastructure", "SoberDinner.Infrastructure\SoberDinner.Infrastructure.csproj", "{9FD0F171-CCB2-4C25-BCF2-52FA59C870B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Requests", "Requests", "{25154CF6-1F81-4408-9A3A-78B469532737}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wheather", "Wheather", "{3BEC762F-2BFB-44B9-B07D-BD48173FC3A1}"
+	ProjectSection(SolutionItems) = preProject
+		GetForcasts.http = GetForcasts.http
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D46ED49F-0646-43E3-9CE6-AB24DADF0716}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +46,11 @@ Global
 		{9FD0F171-CCB2-4C25-BCF2-52FA59C870B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD0F171-CCB2-4C25-BCF2-52FA59C870B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD0F171-CCB2-4C25-BCF2-52FA59C870B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3BEC762F-2BFB-44B9-B07D-BD48173FC3A1} = {25154CF6-1F81-4408-9A3A-78B469532737}
 	EndGlobalSection
 EndGlobal
