@@ -1,4 +1,5 @@
-﻿using Microsoft.IdentityModel.Tokens;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using SoberDinner.Application.Common.Interfaces.Authentication;
 using SoberDinner.Application.Common.Interfaces.Services;
 using System.IdentityModel.Tokens.Jwt;
@@ -9,18 +10,20 @@ namespace SoberDinner.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
+        private readonly JwtSettings _jwtSettings;
         private readonly IDateTimeProvider _dateTimeProvider;
 
-        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider)
+        public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)
         {
             _dateTimeProvider = dateTimeProvider;
+            _jwtSettings = jwtOptions.Value;
         }
 
         public string GenerateToken(Guid userId, string firstName, string lastName)
         {
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(
-                    Encoding.UTF8.GetBytes("super-long-secret-key-that-is-at-least-32-characters")),
+                    Encoding.UTF8.GetBytes(_jwtSettings.Secret)),
                 SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -32,8 +35,9 @@ namespace SoberDinner.Infrastructure.Authentication
             };
 
             var securityToken = new JwtSecurityToken(
-                issuer:"Rajib",
-                expires: _dateTimeProvider.UtcNow.AddMinutes(60),
+                issuer: _jwtSettings.Issuer,
+                audience: _jwtSettings.Audience,
+                expires: _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
                 claims: claims,
                 signingCredentials: signingCredentials);
 
