@@ -15,3 +15,8 @@
 --> dotnet add SoberDinner.Application reference SoberDinner.Domain
 --> dotnet add SoberDinner.API reference .\SoberDinner.Infrastructure
 --> dotnet build
+
+# Secret key
+* dotnet user-secrets init --project SoberDinner.API
+* dotnet user-secrets set --project SoberDinner.API "JwtSettings:Secret" "super-long-secret-key-that-is-at-least-32-characters"
+* dotnet user-secrets list --project SoberDinner.API
