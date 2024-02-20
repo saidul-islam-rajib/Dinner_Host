@@ -15,7 +15,7 @@ namespace SoberDinner.Application.Services.Authentication
             _userRepository = userRepository;
         }
 
-        public AuthenticationResule Login(string email, string password)
+        public AuthenticationResult Login(string email, string password)
         {
             // 1. Validate the user exits
             if(_userRepository.GetUserByEmail(email) is not User user)
@@ -30,17 +30,14 @@ namespace SoberDinner.Application.Services.Authentication
             }
 
             // 3. Create JWT token
-            var token = _jwtTokenGenerator.GenerateToken(user.Id, user.FirstName, user.LastName);
+            var token = _jwtTokenGenerator.GenerateToken(user);
 
-            return new AuthenticationResule(
-                Guid.NewGuid(),
-                "firstname",
-                "lastname",
-                email,
-                "token");
+            return new AuthenticationResult(
+                user,
+                token);
         }
 
-        public AuthenticationResule Register(string firstName, string lastName, string email, string password)
+        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
         {
             // 1. Validate user does exits
             if(_userRepository.GetUserByEmail(email) is not null)
@@ -59,13 +56,10 @@ namespace SoberDinner.Application.Services.Authentication
             _userRepository.Add(user);
 
             // 3. Create JWT token
-            var token = _jwtTokenGenerator.GenerateToken(user.Id, firstName, lastName);
+            var token = _jwtTokenGenerator.GenerateToken(user);
 
-            return new AuthenticationResule(
-                user.Id,
-                firstName,
-                lastName,
-                email,
+            return new AuthenticationResult(
+                user,
                 token);
         }
     }
