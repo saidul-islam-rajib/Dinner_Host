@@ -1,0 +1,4 @@
+ Date: 2024-02-20
+1. Implementing JWT token generator
+2. Using the options pattern for injecting my JWT settings
+3. Using `dotnet user-secrets` for storing secrets during development
