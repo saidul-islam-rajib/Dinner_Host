@@ -1,27 +1,30 @@
 ﻿using ErrorOr;
+using MediatR;
+using SoberDinner.Application.Authentication.Common;
 using SoberDinner.Application.Common.Intefaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Authentication;
-using SoberDinner.Application.Services.Authentication.Common;
 using SoberDinner.Domain.Common.Errors;
 using SoberDinner.Domain.Entities;
 
-namespace SoberDinner.Application.Services.Authentication.Commands
+namespace SoberDinner.Application.Authentication.Commands.Register
 {
-    public class AuthenticationCommandService : IAuthenticationCommandService
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationCommandService(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+        public RegisterCommandHandler(
+            IJwtTokenGenerator jwtTokenGenerator,
+            IUserRepository userRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _userRepository = userRepository;
         }
-        
-        public ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
+
+        public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             // 1. Validate user does exits
-            if (_userRepository.GetUserByEmail(email) is not null)
+            if (_userRepository.GetUserByEmail(command.Email) is not null)
             {
                 return Errors.User.DuplicateEmail;
             }
@@ -30,10 +33,10 @@ namespace SoberDinner.Application.Services.Authentication.Commands
             var user = new User
             {
                 Id = Guid.NewGuid(),
-                FirstName = firstName,
-                LastName = lastName,
-                Email = email,
-                Password = password
+                FirstName = command.FirstName,
+                LastName = command.LastName,
+                Email = command.Email,
+                Password = command.Password
             };
             _userRepository.Add(user);
 
@@ -46,4 +49,3 @@ namespace SoberDinner.Application.Services.Authentication.Commands
         }
     }
 }
-

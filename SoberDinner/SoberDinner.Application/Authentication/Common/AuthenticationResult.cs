@@ -1,6 +1,6 @@
 ﻿using SoberDinner.Domain.Entities;
 
-namespace SoberDinner.Application.Services.Authentication.Common
+namespace SoberDinner.Application.Authentication.Common
 {
     public record AuthenticationResult
     (

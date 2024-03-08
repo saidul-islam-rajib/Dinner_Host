@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using SoberDinner.API.Common.Errors;
-using SoberDinner.Application.Services;
+using SoberDinner.Application;
 using SoberDinner.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);

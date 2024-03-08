@@ -1,8 +1,9 @@
 ﻿using ErrorOr;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using SoberDinner.Application.Services.Authentication.Commands;
-using SoberDinner.Application.Services.Authentication.Common;
-using SoberDinner.Application.Services.Authentication.Queries;
+using SoberDinner.Application.Authentication.Commands.Register;
+using SoberDinner.Application.Authentication.Common;
+using SoberDinner.Application.Authentication.Queries.Login;
 using SoberDinner.Contracts.Authentication;
 using SoberDinner.Domain.Common.Errors;
 
@@ -11,22 +12,19 @@ namespace SoberDinner.API.Controllers
     [Route("auth")]
     public class AuthenticationController : ApiController
     {
-        private IAuthenticationCommandService _authenticationCommandService;
-        private IAuthenticationQueryService _authenticationQueryService;
-        public AuthenticationController(IAuthenticationCommandService authenticationService, IAuthenticationQueryService authenticationQueryService)
+        private readonly ISender _mediator;
+
+        public AuthenticationController(ISender mediator)
         {
-            _authenticationCommandService = authenticationService;
-            _authenticationQueryService = authenticationQueryService;
+            _mediator = mediator;
         }
 
         [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationCommandService.Register(
-                            request.FirstName,
-                            request.LastName,
-                            request.Email,
-                            request.Password);
+            var command = new RegisterCommand(request.FirstName, request.LastName, request.Email, request.Password);
+
+            ErrorOr<AuthenticationResult> authResult = await _mediator.Send(command);
 
             return authResult.Match(
                 authResult => Ok(MapAuthResult(authResult)),
@@ -35,11 +33,10 @@ namespace SoberDinner.API.Controllers
         }
         
         [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationQueryService.Login(
-                request.Email,
-                request.Password);
+            var query = new LoginQuery(request.Email, request.Password);
+            var authResult = await _mediator.Send(query);
 
             if(authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
             {

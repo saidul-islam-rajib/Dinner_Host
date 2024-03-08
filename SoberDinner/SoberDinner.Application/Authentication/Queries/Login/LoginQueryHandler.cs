@@ -1,33 +1,37 @@
 ﻿using ErrorOr;
+using MediatR;
+using SoberDinner.Application.Authentication.Common;
 using SoberDinner.Application.Common.Intefaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Authentication;
-using SoberDinner.Application.Services.Authentication.Common;
 using SoberDinner.Domain.Common.Errors;
 using SoberDinner.Domain.Entities;
 
-namespace SoberDinner.Application.Services.Authentication.Queries
+namespace SoberDinner.Application.Authentication.Queries.Login
 {
-    public class AuthenticationQueryService : IAuthenticationQueryService
+    public class LoginQueryHandler
+        : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
     {
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationQueryService(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+        public LoginQueryHandler(
+            IJwtTokenGenerator jwtTokenGenerator,
+            IUserRepository userRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _userRepository = userRepository;
         }
 
-        public ErrorOr<AuthenticationResult> Login(string email, string password)
+        public async Task<ErrorOr<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
             // 1. Validate the user exits
-            if(_userRepository.GetUserByEmail(email) is not User user)
+            if (_userRepository.GetUserByEmail(query.Email) is not User user)
             {
                 return Errors.Authentication.InvalidCredentials;
             }
 
             // 2. Validate the password is correct
-            if(user.Password != password)
+            if (user.Password != query.Password)
             {
                 return new[] { Errors.Authentication.InvalidCredentials };
             }
@@ -38,7 +42,6 @@ namespace SoberDinner.Application.Services.Authentication.Queries
             return new AuthenticationResult(
                 user,
                 token);
-        }        
+        }
     }
 }
-
