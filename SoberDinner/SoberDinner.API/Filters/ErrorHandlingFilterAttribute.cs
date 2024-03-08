@@ -12,6 +12,7 @@ namespace SoberDinner.API.Filters
 
             var problemDetails = new ProblemDetails
             {
+                Type = "https://tools.ietf.org/html/rfc7231#section-6.5.1",
                 Title = "An error occurred while precessing your request",
                 Status = (int)HttpStatusCode.InternalServerError
             };
