@@ -56,7 +56,7 @@ namespace SoberDinner.API.Common.Errors
                 problemDetails.Extensions["traceId"] = traceId;
             }
 
-            //problemDetails.Extensions.Add("customProperty", "customValue");
+            problemDetails.Extensions.Add("customProperty", "customValue");
 
         }
 

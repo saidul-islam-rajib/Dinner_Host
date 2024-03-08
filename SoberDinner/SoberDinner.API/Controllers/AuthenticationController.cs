@@ -1,4 +1,4 @@
-﻿using FluentResults;
+﻿using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using SoberDinner.Application.Common.Errors;
 using SoberDinner.Application.Services.Authentication;
@@ -19,23 +19,16 @@ namespace SoberDinner.API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            Result<AuthenticationResult> registerResult = _authenticationService.Register(
+            ErrorOr<AuthenticationResult> authResult = _authenticationService.Register(
                             request.FirstName,
                             request.LastName,
                             request.Email,
                             request.Password);
-            if (registerResult.IsSuccess)
-            {
-                return Ok(MapAuthResult(registerResult.Value));
-            }
 
-            var firstError = registerResult.Errors[0]; // taking first error
-            if(firstError is DuplicateEmailError)
-            {
-                return Problem(statusCode: StatusCodes.Status409Conflict, detail: "Email already exists.");
-            }
-
-            return Problem();
+            return authResult.MatchFirst(
+                authResult => Ok(MapAuthResult(authResult)),
+                firstError => Problem(statusCode: StatusCodes.Status409Conflict, title: firstError.Description)
+            );
         }
 
         private IActionResult MapAuthResult(AuthenticationResult authResult)
@@ -52,18 +45,14 @@ namespace SoberDinner.API.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            var authResult = _authenticationService.Login(
+            ErrorOr<AuthenticationResult> logingResult = _authenticationService.Login(
                 request.Email,
                 request.Password);
 
-            var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
-
-            return Ok(response);
+            return logingResult.MatchFirst(
+                authResult => Ok(MapAuthResult(authResult)),
+                firstError => Problem(statusCode: StatusCodes.Status409Conflict, title: firstError.Description)
+            );
         }
     }
 }
