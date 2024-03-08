@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OneOf;
+using SoberDinner.Application.Common.Errors;
 using SoberDinner.Application.Services.Authentication;
 using SoberDinner.Contracts.Authentication;
 
@@ -17,7 +19,7 @@ namespace SoberDinner.API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            OneOf.OneOf<AuthenticationResult, Application.Common.Errors.DuplicateEmailError> registerResult = _authenticationService.Register(
+            OneOf<AuthenticationResult, DuplicateEmailError> registerResult = _authenticationService.Register(
                             request.FirstName,
                             request.LastName,
                             request.Email,
