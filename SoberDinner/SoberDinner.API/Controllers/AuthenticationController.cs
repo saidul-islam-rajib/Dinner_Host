@@ -1,14 +1,13 @@
 ﻿using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
-using SoberDinner.Application.Common.Errors;
 using SoberDinner.Application.Services.Authentication;
 using SoberDinner.Contracts.Authentication;
+using SoberDinner.Domain.Common.Errors;
 
 namespace SoberDinner.API.Controllers
 {
     [Route("auth")]
-    [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : ApiController
     {
         private IAuthenticationService _authenticationService;
         public AuthenticationController(IAuthenticationService authenticationService)
@@ -25,12 +24,31 @@ namespace SoberDinner.API.Controllers
                             request.Email,
                             request.Password);
 
-            return authResult.MatchFirst(
+            return authResult.Match(
                 authResult => Ok(MapAuthResult(authResult)),
-                firstError => Problem(statusCode: StatusCodes.Status409Conflict, title: firstError.Description)
+                errors => Problem(errors)
             );
         }
+        
+        [HttpPost("login")]
+        public IActionResult Login(LoginRequest request)
+        {
+            ErrorOr<AuthenticationResult> authResult = _authenticationService.Login(
+                request.Email,
+                request.Password);
 
+            if(authResult.IsError && authResult.FirstError == Errors.Authentication.InvalidCredentials)
+            {
+                return Problem(statusCode: StatusCodes.Status401Unauthorized,
+                               title: authResult.FirstError.Description);
+            }
+
+            return authResult.Match(
+                authResult => Ok(MapAuthResult(authResult)),
+                errors => Problem(errors)
+            );
+        }
+        
         private IActionResult MapAuthResult(AuthenticationResult authResult)
         {
             var response = new AuthenticationResponse(
@@ -40,19 +58,6 @@ namespace SoberDinner.API.Controllers
                             authResult.User.Email,
                             authResult.Token);
             return Ok(response);
-        }
-
-        [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
-        {
-            ErrorOr<AuthenticationResult> logingResult = _authenticationService.Login(
-                request.Email,
-                request.Password);
-
-            return logingResult.MatchFirst(
-                authResult => Ok(MapAuthResult(authResult)),
-                firstError => Problem(statusCode: StatusCodes.Status409Conflict, title: firstError.Description)
-            );
         }
     }
 }

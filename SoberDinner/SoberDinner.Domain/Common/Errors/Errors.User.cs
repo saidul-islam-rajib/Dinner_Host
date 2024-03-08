@@ -7,8 +7,8 @@ namespace SoberDinner.Domain.Common.Errors
         public static class User
         {
             public static Error DuplicateEmail => Error.Conflict(
-                code: "User.DuplciateEmail",
-                description: "A conflicet error has occurred.");
+                code: "User.DuplicateEmail",
+                description: "Email is already in use.");
         }
     }
 }
