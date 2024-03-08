@@ -1,3 +1,4 @@
+using SoberDinner.API.Middleware;
 using SoberDinner.Application.Services;
 using SoberDinner.Infrastructure.Services;
 
@@ -22,6 +23,7 @@ if (app.Environment.IsDevelopment())
 }
 
 {
+    app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();
