@@ -1,6 +1,8 @@
 ﻿using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
-using SoberDinner.Application.Services.Authentication;
+using SoberDinner.Application.Services.Authentication.Commands;
+using SoberDinner.Application.Services.Authentication.Common;
+using SoberDinner.Application.Services.Authentication.Queries;
 using SoberDinner.Contracts.Authentication;
 using SoberDinner.Domain.Common.Errors;
 
@@ -9,16 +11,18 @@ namespace SoberDinner.API.Controllers
     [Route("auth")]
     public class AuthenticationController : ApiController
     {
-        private IAuthenticationService _authenticationService;
-        public AuthenticationController(IAuthenticationService authenticationService)
+        private IAuthenticationCommandService _authenticationCommandService;
+        private IAuthenticationQueryService _authenticationQueryService;
+        public AuthenticationController(IAuthenticationCommandService authenticationService, IAuthenticationQueryService authenticationQueryService)
         {
-            _authenticationService = authenticationService;
+            _authenticationCommandService = authenticationService;
+            _authenticationQueryService = authenticationQueryService;
         }
 
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationService.Register(
+            ErrorOr<AuthenticationResult> authResult = _authenticationCommandService.Register(
                             request.FirstName,
                             request.LastName,
                             request.Email,
@@ -33,7 +37,7 @@ namespace SoberDinner.API.Controllers
         [HttpPost("login")]
         public IActionResult Login(LoginRequest request)
         {
-            ErrorOr<AuthenticationResult> authResult = _authenticationService.Login(
+            ErrorOr<AuthenticationResult> authResult = _authenticationQueryService.Login(
                 request.Email,
                 request.Password);
 
