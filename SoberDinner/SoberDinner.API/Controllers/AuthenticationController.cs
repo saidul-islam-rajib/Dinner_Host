@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OneOf;
+﻿using FluentResults;
+using Microsoft.AspNetCore.Mvc;
 using SoberDinner.Application.Common.Errors;
 using SoberDinner.Application.Services.Authentication;
 using SoberDinner.Contracts.Authentication;
@@ -19,14 +19,23 @@ namespace SoberDinner.API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            OneOf<AuthenticationResult, DuplicateEmailError> registerResult = _authenticationService.Register(
+            Result<AuthenticationResult> registerResult = _authenticationService.Register(
                             request.FirstName,
                             request.LastName,
                             request.Email,
                             request.Password);
-            return registerResult.Match(
-               authRresult => Ok(MapAuthResult(authRresult)),
-                _ => Problem(statusCode: StatusCodes.Status409Conflict, title: "Email already exists"));
+            if (registerResult.IsSuccess)
+            {
+                return Ok(MapAuthResult(registerResult.Value));
+            }
+
+            var firstError = registerResult.Errors[0]; // taking first error
+            if(firstError is DuplicateEmailError)
+            {
+                return Problem(statusCode: StatusCodes.Status409Conflict, detail: "Email already exists.");
+            }
+
+            return Problem();
         }
 
         private IActionResult MapAuthResult(AuthenticationResult authResult)
