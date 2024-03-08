@@ -52,6 +52,7 @@ namespace SoberDinner.Application.Services.Authentication
             // 2. Create uer (generate uqique ID) and persist to DB
             var user = new User
             {
+                Id = Guid.NewGuid(),
                 FirstName = firstName,
                 LastName = lastName,
                 Email = email,
@@ -68,3 +69,4 @@ namespace SoberDinner.Application.Services.Authentication
         }
     }
 }
+
