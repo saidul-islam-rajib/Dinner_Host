@@ -6,7 +6,7 @@ namespace SoberDinner.API.Controllers
 {
     public class ErrorController : ControllerBase
     {
-        [Route("/error")]
+        [HttpGet("/error")]
         public IActionResult Error()
         {
             Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
