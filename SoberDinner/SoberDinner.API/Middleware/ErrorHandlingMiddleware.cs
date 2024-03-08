@@ -23,7 +23,7 @@ namespace SoberDinner.API.Middleware
             }
         }
 
-        private Task HandleExceptionAsync(HttpContext context, Exception ex)
+        private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             var code = HttpStatusCode.InternalServerError; // 500 if unexpected
             var result = JsonSerializer.Serialize(new { error = "An error occurred while processing your request" });

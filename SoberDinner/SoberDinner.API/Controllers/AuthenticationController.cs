@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SoberDinner.API.Filters;
 using SoberDinner.Application.Services.Authentication;
 using SoberDinner.Contracts.Authentication;
 

@@ -1,4 +1,4 @@
-using SoberDinner.API.Middleware;
+using SoberDinner.API.Filters;
 using SoberDinner.Application.Services;
 using SoberDinner.Infrastructure.Services;
 
@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
-    builder.Services.AddControllers();
+    builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
 }
 
 builder.Services.AddEndpointsApiExplorer();
@@ -23,7 +23,6 @@ if (app.Environment.IsDevelopment())
 }
 
 {
-    app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseHttpsRedirection();
     app.MapControllers();
     app.Run();
