@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SoberDinner.Application.Common.Errors;
 
 namespace SoberDinner.API.Controllers
 {
@@ -11,7 +11,13 @@ namespace SoberDinner.API.Controllers
         {
             Exception? exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-            return Problem();
+            var (customStatusCode, customErrorMessage) = exception switch
+            {
+                IServiceException serviceException => ((int)serviceException.StatusCode, serviceException.ErrorMessage),
+                _ => (StatusCodes.Status500InternalServerError, "An unexpected error occurred.")
+            };
+
+            return Problem(statusCode: customStatusCode, title: customErrorMessage);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SoberDinner.Application.Common.Intefaces.Persistence;
+﻿using SoberDinner.Application.Common.Errors;
+using SoberDinner.Application.Common.Intefaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Authentication;
 using SoberDinner.Domain.Entities;
 
@@ -42,7 +43,7 @@ namespace SoberDinner.Application.Services.Authentication
             // 1. Validate user does exits
             if(_userRepository.GetUserByEmail(email) is not null)
             {
-                throw new Exception($"User with {email}, already exits!");
+                throw new DuplicateEmailException();
             }
 
             // 2. Create uer (generate uqique ID) and persist to DB
