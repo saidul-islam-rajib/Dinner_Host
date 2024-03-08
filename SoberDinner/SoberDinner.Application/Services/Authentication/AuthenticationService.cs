@@ -1,4 +1,5 @@
-﻿using SoberDinner.Application.Common.Errors;
+﻿using OneOf;
+using SoberDinner.Application.Common.Errors;
 using SoberDinner.Application.Common.Intefaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Authentication;
 using SoberDinner.Domain.Entities;
@@ -38,12 +39,12 @@ namespace SoberDinner.Application.Services.Authentication
                 token);
         }
 
-        public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+        public OneOf<AuthenticationResult, DuplicateEmailError> Register(string firstName, string lastName, string email, string password)
         {
             // 1. Validate user does exits
             if(_userRepository.GetUserByEmail(email) is not null)
             {
-                throw new DuplicateEmailException();
+                return new DuplicateEmailError();
             }
 
             // 2. Create uer (generate uqique ID) and persist to DB

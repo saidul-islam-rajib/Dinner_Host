@@ -17,19 +17,24 @@ namespace SoberDinner.API.Controllers
         [HttpPost("register")]
         public IActionResult Register(RegisterRequest request)
         {
-            var authResult = _authenticationService.Register(
-                request.FirstName,
-                request.LastName,
-                request.Email,
-                request.Password);
+            OneOf.OneOf<AuthenticationResult, Application.Common.Errors.DuplicateEmailError> registerResult = _authenticationService.Register(
+                            request.FirstName,
+                            request.LastName,
+                            request.Email,
+                            request.Password);
+            return registerResult.Match(
+               authRresult => Ok(MapAuthResult(authRresult)),
+                _ => Problem(statusCode: StatusCodes.Status409Conflict, title: "Email already exists"));
+        }
 
+        private IActionResult MapAuthResult(AuthenticationResult authResult)
+        {
             var response = new AuthenticationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
-
+                            authResult.User.Id,
+                            authResult.User.FirstName,
+                            authResult.User.LastName,
+                            authResult.User.Email,
+                            authResult.Token);
             return Ok(response);
         }
 
