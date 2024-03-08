@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using SoberDinner.API.Errors;
-using SoberDinner.API.Filters;
+using SoberDinner.API.Common.Errors;
 using SoberDinner.Application.Services;
 using SoberDinner.Infrastructure.Services;
 
@@ -9,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
-    //builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
+
     builder.Services.AddControllers();
 
     builder.Services.AddSingleton<ProblemDetailsFactory, SoberProblemDetailsFactory>();

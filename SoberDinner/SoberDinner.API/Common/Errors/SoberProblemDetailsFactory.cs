@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
-namespace SoberDinner.API.Errors
+namespace SoberDinner.API.Common.Errors
 {
     public class SoberProblemDetailsFactory : ProblemDetailsFactory
     {
@@ -32,11 +32,11 @@ namespace SoberDinner.API.Errors
                 Instance = instance
             };
 
-            if(title != null)
+            if (title != null)
             {
                 problemDetails.Title = title;
             }
-            
+
             ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
             return problemDetails;
         }
@@ -44,14 +44,14 @@ namespace SoberDinner.API.Errors
         private void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
         {
             problemDetails.Status ??= statusCode;
-            if(_options.ClientErrorMapping.TryGetValue(statusCode, out var clientErrorData))
+            if (_options.ClientErrorMapping.TryGetValue(statusCode, out var clientErrorData))
             {
                 problemDetails.Title ??= clientErrorData.Title;
                 problemDetails.Type ??= clientErrorData.Link;
             }
 
             var traceId = Activity.Current?.Id ?? httpContext?.TraceIdentifier;
-            if(traceId != null)
+            if (traceId != null)
             {
                 problemDetails.Extensions["traceId"] = traceId;
             }
