@@ -32,6 +32,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dinners", "Dinners", "{8A02
 		ListDinners.http = ListDinners.http
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainModels", "DomainModels", "{9653E31C-761C-4BAB-AA52-839EAA65D9DA}"
+	ProjectSection(SolutionItems) = preProject
+		Aggregates.Menu.md = Aggregates.Menu.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +70,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3BEC762F-2BFB-44B9-B07D-BD48173FC3A1} = {25154CF6-1F81-4408-9A3A-78B469532737}
 		{8A02C4E9-C106-41F8-9FB9-30EFBD398E12} = {25154CF6-1F81-4408-9A3A-78B469532737}
+		{9653E31C-761C-4BAB-AA52-839EAA65D9DA} = {9377BAAB-9778-4C17-B934-A84DE20B6338}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07C0D10F-46D4-490B-92C8-5E258A10B18E}
