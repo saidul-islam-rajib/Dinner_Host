@@ -49,16 +49,15 @@ namespace SoberDinner.API.Controllers
                 errors => Problem(errors)
             );
         }
-        
-        private IActionResult MapAuthResult(AuthenticationResult authResult)
+
+        private static AuthenticationResponse MapAuthResult(AuthenticationResult authResult)
         {
-            var response = new AuthenticationResponse(
+            return new AuthenticationResponse(
                             authResult.User.Id,
                             authResult.User.FirstName,
                             authResult.User.LastName,
                             authResult.User.Email,
                             authResult.Token);
-            return Ok(response);
         }
     }
 }
