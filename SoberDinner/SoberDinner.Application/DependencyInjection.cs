@@ -1,9 +1,6 @@
-﻿using ErrorOr;
-using FluentValidation;
+﻿using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using SoberDinner.Application.Authentication.Commands.Register;
-using SoberDinner.Application.Authentication.Common;
 using SoberDinner.Application.Common.Behaviors;
 using System.Reflection;
 
@@ -15,9 +12,9 @@ namespace SoberDinner.Application
         {
             services.AddMediatR(typeof(DependencyInjection).Assembly);
 
-            services.AddScoped<
-                IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,
-                ValidationRegisterCommandBehavior>();
+            services.AddScoped(
+                typeof(IPipelineBehavior<,>),
+                typeof(ValidationBehavior<,>));
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             return services;
