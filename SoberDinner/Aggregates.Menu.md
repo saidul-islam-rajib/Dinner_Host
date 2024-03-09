@@ -14,37 +14,32 @@ class Menu
 
 ```json
 {
-	"id":"00000000-0000-0000-0000-000000000000",
-	"name":"Menu 1",
-	"description":"menu 1 description",
-	"averageRating":4.5,
-	"sections":[
-		{
-			"id":"00000000-0000-0000-0000-000000000000",
-			"name":"section name",
-			"description":"section description",
-			"items":[
-				{
-					"id":"00000000-0000-0000-0000-000000000000",
-					"name":"Item 1",
-					"description":"item description",
-					"price":120.6,
-				}
-			]
-		}
-	],
-	"createdDateTime":"2024-01-01T00:00:00.000000Z",
-	"updatedDateTime":"2024-01-01T00:00:00.000000Z",
-	
-	"hostId":"00000000-0000-0000-0000-000000000000",
-	"dinnerIds": [
-		"00000000-0000-0000-0000-000000000000",
-		"00000000-0000-0000-0000-000000000000"
-	],
-	"menuReviewIds":[
-		"00000000-0000-0000-0000-000000000000"
-	],
-	
-	
+    "id": { "value": "00000000-0000-0000-0000-000000000000" },
+    "name": "Yummy Menu",
+    "description": "A menu with yummy food",
+    "averageRating": 4.5,
+    "sections": [
+        {
+            "id": { "value": "00000000-0000-0000-0000-000000000000" },
+            "name": "Fast food",
+            "description": "just to test",
+            "items": [
+                {
+                    "id": { "value": "00000000-0000-0000-0000-000000000000" },
+                    "name": "Pizza",
+                    "description": "Tasty pizza"
+                }
+            ]
+        }
+    ],
+    "hostId": { "value": "00000000-0000-0000-0000-000000000000" },
+    "dinnerIds": [
+        { "value": "00000000-0000-0000-0000-000000000000" }
+    ],
+    "menuReviewIds": [
+        { "value": "00000000-0000-0000-0000-000000000000" }
+    ],
+    "createdDateTime": "2020-01-01T00:00:00.0000000Z",
+    "updatedDateTime": "2020-01-01T00:00:00.0000000Z"
 }
 ```
