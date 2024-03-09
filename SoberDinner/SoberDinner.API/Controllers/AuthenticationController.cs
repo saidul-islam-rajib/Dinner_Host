@@ -1,6 +1,7 @@
 ﻿using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SoberDinner.Application.Authentication.Commands.Register;
 using SoberDinner.Application.Authentication.Common;
@@ -11,6 +12,7 @@ using SoberDinner.Domain.Common.Errors;
 namespace SoberDinner.API.Controllers
 {
     [Route("auth")]
+    [AllowAnonymous]
     public class AuthenticationController : ApiController
     {
         private readonly ISender _mediator;

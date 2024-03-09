@@ -1,4 +1,5 @@
 ﻿using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SoberDinner.API.Http;
@@ -6,6 +7,7 @@ using SoberDinner.API.Http;
 namespace SoberDinner.API.Controllers
 {
     [ApiController]
+    [Authorize]
     public class ApiController : ControllerBase
     {
         protected IActionResult Problem(List<Error> errors)
