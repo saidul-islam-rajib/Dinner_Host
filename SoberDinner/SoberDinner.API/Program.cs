@@ -1,17 +1,14 @@
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using SoberDinner.API.Common.Errors;
+using SoberDinner.API;
 using SoberDinner.Application;
 using SoberDinner.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services
+        .AddPresentation()
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 
-    builder.Services.AddControllers();
-
-    builder.Services.AddSingleton<ProblemDetailsFactory, SoberProblemDetailsFactory>();
 }
 
 builder.Services.AddEndpointsApiExplorer();
