@@ -2,6 +2,6 @@
 {
     public class Rating
     {
-        public int Value { get; set; }
+        public double Value { get; set; }
     }
 }

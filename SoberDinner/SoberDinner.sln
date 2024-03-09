@@ -34,7 +34,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dinners", "Dinners", "{8A02
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainModels", "DomainModels", "{9653E31C-761C-4BAB-AA52-839EAA65D9DA}"
 	ProjectSection(SolutionItems) = preProject
+		Aggregates.Bill.md = Aggregates.Bill.md
+		Aggregates.Dinner.md = Aggregates.Dinner.md
+		Aggregates.Guest.md = Aggregates.Guest.md
+		Aggregates.Host.md = Aggregates.Host.md
 		Aggregates.Menu.md = Aggregates.Menu.md
+		Aggregates.MenuReview.md = Aggregates.MenuReview.md
+		Aggregates.User.md = Aggregates.User.md
 	EndProjectSection
 EndProject
 Global
