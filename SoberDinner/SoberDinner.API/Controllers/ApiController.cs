@@ -1,5 +1,6 @@
 ﻿using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SoberDinner.API.Http;
 
 namespace SoberDinner.API.Controllers
@@ -9,6 +10,18 @@ namespace SoberDinner.API.Controllers
     {
         protected IActionResult Problem(List<Error> errors)
         {
+            if(errors.All(error => error.Type == ErrorType.Validation))
+            {
+                var modelStateDictionary = new ModelStateDictionary();
+                foreach (var error in errors)
+                {
+                    modelStateDictionary.AddModelError(
+                        error.Code,
+                        error.Description);
+                }
+                return ValidationProblem(modelStateDictionary);
+            }
+
             HttpContext.Items[HttpContextItemKeys.Errors] = errors;
 
             var firstError = errors[0];
