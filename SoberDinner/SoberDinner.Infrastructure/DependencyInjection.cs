@@ -42,7 +42,7 @@ namespace SoberDinner.Infrastructure.Services
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidateLifetime = false,
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = JwtSettings.Issuer,
                     ValidAudience = JwtSettings.Audience,
