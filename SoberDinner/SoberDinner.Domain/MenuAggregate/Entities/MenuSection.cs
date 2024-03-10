@@ -1,7 +1,9 @@
-﻿using SoberDinner.Domain.Common.Models;
+﻿
+
+using SoberDinner.Domain.Common.Models;
 using SoberDinner.Domain.Menu.ValueObjects;
 
-namespace SoberDinner.Domain.Menu.Entities
+namespace SoberDinner.Domain.MenuAggregate.Entities
 {
     public sealed class MenuSection : Entity<MenuSectionId>
     {
@@ -23,7 +25,8 @@ namespace SoberDinner.Domain.Menu.Entities
 
         public static MenuSection Create(
             string name,
-            string description)
+            string description,
+            List<MenuItem>? items)
         {
             return new(
                 MenuSectionId.CreateUqique(),

@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SoberDinner.Application.Common.Intefaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Authentication;
+using SoberDinner.Application.Common.Interfaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Services;
 using SoberDinner.Infrastructure.Authentication;
 using SoberDinner.Infrastructure.Persistence;
@@ -18,9 +19,20 @@ namespace SoberDinner.Infrastructure.Services
             this IServiceCollection services,
             ConfigurationManager configuration)
         {
-            services.AddAuth(configuration);
+            services
+                .AddAuth(configuration)
+                .AddPersistance();
+
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            return services;
+        }
+
+        public static IServiceCollection AddPersistance(
+            this IServiceCollection services)
+        {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+
             return services;
         }
 

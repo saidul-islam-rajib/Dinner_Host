@@ -1,16 +1,18 @@
-﻿using SoberDinner.Domain.Common.Models;
+﻿
 
-namespace SoberDinner.Domain.Menu.ValueObjects
+using SoberDinner.Domain.Common.Models;
+
+namespace SoberDinner.Domain.DinnerAggregate.ValueObjects
 {
-    public sealed class MenuId : ValueObject
+    public sealed class DinnerId : ValueObject
     {
         public Guid Value { get; }
-        public MenuId(Guid value)
+        public DinnerId(Guid value)
         {
             Value = value;
         }
 
-        public static MenuId CreateUqique()
+        public static DinnerId CreateUqique()
         {
             return new(Guid.NewGuid());
         }

@@ -1,7 +1,7 @@
 ﻿using SoberDinner.Domain.Common.Models;
 using SoberDinner.Domain.Menu.ValueObjects;
 
-namespace SoberDinner.Domain.Menu.Entities
+namespace SoberDinner.Domain.MenuAggregate.Entities
 {
     public sealed class MenuItem : Entity<MenuItemId>
     {

@@ -1,16 +1,16 @@
 ﻿using SoberDinner.Domain.Common.Models;
 
-namespace SoberDinner.Domain.MenuReview.ValueObjects
+namespace SoberDinner.Domain.MenuAggregate.ValueObjects
 {
-    public sealed class MenuReviewId : ValueObject
+    public sealed class MenuId : ValueObject
     {
         public Guid Value { get; }
-        public MenuReviewId(Guid value)
+        public MenuId(Guid value)
         {
             Value = value;
         }
 
-        public static MenuReviewId CreateUqique()
+        public static MenuId CreateUqique()
         {
             return new(Guid.NewGuid());
         }

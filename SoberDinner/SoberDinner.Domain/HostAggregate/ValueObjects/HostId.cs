@@ -1,6 +1,6 @@
 ﻿using SoberDinner.Domain.Common.Models;
 
-namespace SoberDinner.Domain.Host.ValueObjects
+namespace SoberDinner.Domain.HostAggregate.ValueObjects
 {
     public sealed class HostId : ValueObject
     {
@@ -19,5 +19,7 @@ namespace SoberDinner.Domain.Host.ValueObjects
         {
             yield return Value;
         }
+
+        
     }
 }

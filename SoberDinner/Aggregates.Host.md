@@ -10,8 +10,8 @@ class Host
 ```json
 {
     "id": { "value": "00000000-0000-0000-0000-000000000000" },
-    "firstName": "Tiffany",
-    "lastName": "Doe",
+    "firstName": "Saidul Islam",
+    "lastName": "Rajib",
     "profileImage": "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp",
     "averageRating": 4.5,
     "userId": { "value": "00000000-0000-0000-0000-000000000000" },
