@@ -44,8 +44,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainModels", "DomainModel
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{20F71077-5113-42DC-AA70-7062615AFC06}"
 	ProjectSection(SolutionItems) = preProject
-		Api.md = Api.md
 		Api.Menu.md = Api.Menu.md
+		Api.Auth.md = Api.Auth.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5D4FBACC-243C-4C35-9BD1-7A10B386B4FD}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.Props = Directory.Build.Props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Menus", "Menus", "{FD0D8EBA-C48E-4268-A846-0FD606D8DB6A}"
+	ProjectSection(SolutionItems) = preProject
+		CreateMenu.http = CreateMenu.http
 	EndProjectSection
 EndProject
 Global
@@ -83,6 +93,7 @@ Global
 		{8A02C4E9-C106-41F8-9FB9-30EFBD398E12} = {25154CF6-1F81-4408-9A3A-78B469532737}
 		{9653E31C-761C-4BAB-AA52-839EAA65D9DA} = {9377BAAB-9778-4C17-B934-A84DE20B6338}
 		{20F71077-5113-42DC-AA70-7062615AFC06} = {9377BAAB-9778-4C17-B934-A84DE20B6338}
+		{FD0D8EBA-C48E-4268-A846-0FD606D8DB6A} = {25154CF6-1F81-4408-9A3A-78B469532737}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {07C0D10F-46D4-490B-92C8-5E258A10B18E}

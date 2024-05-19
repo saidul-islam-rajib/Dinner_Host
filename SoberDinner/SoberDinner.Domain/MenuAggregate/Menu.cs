@@ -51,7 +51,7 @@ namespace SoberDinner.Domain.MenuAggregate
             HostId hostId,
             List<MenuSection>? sections)
         {
-            return new(
+            return new Menu(
                     MenuId.CreateUqique(),
                     name,
                     description,

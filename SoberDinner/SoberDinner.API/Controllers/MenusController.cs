@@ -27,7 +27,6 @@ namespace SoberDinner.API.Controllers
             var createMenuResult = await _mediator.Send(command);
 
             return createMenuResult.Match(
-                //menu => CreatedAtAction(nameof(GetMenu), new { hostId, menuId = menu.Id}, menu),
                 menu => Ok(_mapper.Map<MenuResponse>(menu)),
                 errors => Problem(errors));
         }
