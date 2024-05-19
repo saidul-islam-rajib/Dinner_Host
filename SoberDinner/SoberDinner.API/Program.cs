@@ -1,4 +1,5 @@
 using SoberDinner.API;
+using SoberDinner.API.Common.Mapping;
 using SoberDinner.Application;
 using SoberDinner.Infrastructure.Services;
 
@@ -9,8 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
 
+
 }
 
+builder.Services.AddSingleton<MenuMappingConfig>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

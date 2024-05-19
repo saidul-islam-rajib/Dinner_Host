@@ -18,10 +18,10 @@ namespace SoberDinner.API.Common.Mapping
 
             config.NewConfig<Menu, MenuResponse>()
                 .Map(dest => dest.Id, src => src.Id.Value)
-                .Map(dest => dest.AverageRating, src => src.AverageRating.Value)
+                .Map(dest => dest.AverageRating, src => src.AverageRating.NumRatings > 0 ? src.AverageRating.Value : 0)
                 .Map(dest => dest.HostId, src => src.HostId.Value)
                 .Map(dest => dest.DinnerIds, src => src.DinnerIds.Select(dinnerId => dinnerId.Value))
-                .Map(dest => dest.MenuReviewIds, src => src.MenuReviewIds.Select(menuReviewId => menuReviewId.Value));
+                .Map(dest => dest.MenuReviewIds, src => src.MenuReviewIds.Select(menuId => menuId.Value));
 
             config.NewConfig<MenuSection, MenuSectionResponse>()
                 .Map(dest => dest.Id, src => src.Id.Value);

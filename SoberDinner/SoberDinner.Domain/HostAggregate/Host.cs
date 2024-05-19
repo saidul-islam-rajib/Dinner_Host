@@ -2,9 +2,7 @@
 using SoberDinner.Domain.Common.ValueObjects;
 using SoberDinner.Domain.DinnerAggregate.ValueObjects;
 using SoberDinner.Domain.HostAggregate.ValueObjects;
-using SoberDinner.Domain.MenuAggregate.Entities;
 using SoberDinner.Domain.MenuAggregate.ValueObjects;
-using static System.Collections.Specialized.BitVector32;
 
 namespace SoberDinner.Domain.HostAggregate
 {
@@ -42,14 +40,25 @@ namespace SoberDinner.Domain.HostAggregate
             UpdatedDateTime = updatedDateTime;
         }
 
-        //public static Host Create(
-        //    string firstName,
-        //    string lastName,
-        //    string description,
-        //    HostId hostId,
-        //    List<MenuSection>? sections)
-        //{
-
-        //}
+        public static Host Create(
+            string hostId,
+            string firstName,
+            string lastName,
+            string profileImage,
+            List<MenuId>? menudIds,
+            List<DinnerId>? dinnerIds,
+            DateTime createdDateTime,
+            DateTime updatedDateTime)
+        {
+            return new Host(
+                HostId.Create(hostId),
+                firstName,
+                lastName,
+                profileImage,
+                menudIds,
+                dinnerIds,
+                createdDateTime,
+                updatedDateTime);
+        }
     }
 }

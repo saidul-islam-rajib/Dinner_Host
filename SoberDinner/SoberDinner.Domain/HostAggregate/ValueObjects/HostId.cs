@@ -20,6 +20,11 @@ namespace SoberDinner.Domain.HostAggregate.ValueObjects
             yield return Value;
         }
 
-        
+        public static HostId Create(string value)
+        {
+            return new (Guid.NewGuid());
+        }
+
+
     }
 }

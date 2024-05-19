@@ -22,22 +22,17 @@ namespace SoberDinner.Application.Menus.Commands.CreateMenu
 
             //1. Crate Menu
             var menu = Menu.Create(
+                hostId: HostId.Create(request.HostId),
                 name: request.Name,
                 description: request.Description,
-                hostId: HostId.CreateUqique(),
-                //hostId: HostId.Create(request.hostId),
-                sections: request.Sections.ConvertAll(section => 
-                    MenuSection.Create(
+                sections: request.Sections.ConvertAll(section => MenuSection.Create(
                     section.Name,
                     section.Description,
-                    section.Items.ConvertAll(
-                        item => MenuItem.Create(
+                    section.Items.ConvertAll(item => MenuItem.Create(
                         item.Name,
-                        item.Description)).ToList())).ToList());
+                        item.Description)))));
 
-            //2. Persist Menu
             _menuRepository.Add(menu);
-
             return menu;
         }
     }

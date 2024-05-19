@@ -28,37 +28,34 @@ namespace SoberDinner.Domain.MenuAggregate
 
 
         private Menu(
-            MenuId menuId,
+            MenuId menuId, 
+            HostId hostId,            
             string name,
             string description,
-            HostId hostId,
-            List<MenuSection>? sections,
-            DateTime createdDateTime,
-            DateTime updatedDateTime)
+            AverageRating averageRating,
+            List<MenuSection>? sections)
             : base(menuId)
         {
+            HostId = hostId;
             Name = name;
             Description = description;
-            HostId = hostId;
+            AverageRating = averageRating;
             _sections = sections;
-            CreatedDateTime = createdDateTime;
-            UpdatedDateTime = updatedDateTime;
         }
 
         public static Menu Create(
+            HostId hostId,
             string name,
             string description,
-            HostId hostId,
             List<MenuSection>? sections)
         {
             return new Menu(
-                    MenuId.CreateUqique(),
-                    name,
-                    description,
-                    hostId,
-                    sections ?? new(),
-                    DateTime.UtcNow,
-                    DateTime.UtcNow);
+                MenuId.CreateUqique(),
+                hostId,
+                name,
+                description,
+                AverageRating.CreateNew(),
+                sections ?? new());
         }
     }
 }
