@@ -33,7 +33,7 @@ namespace SoberDinner.Infrastructure.Services
             this IServiceCollection services)
         {
             services.AddDbContext<SoberDinnerDbContext>(options =>
-                options.UseSqlServer());
+                options.UseSqlServer("Data Source=SAIDUL-INTERN;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();

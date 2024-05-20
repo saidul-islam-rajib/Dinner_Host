@@ -15,7 +15,6 @@ class Menu
 ### Menu Response
 ```json
 {
-    {
     "id": "6126960c-0e94-46d6-a270-e836bf767b6a",
     "name": "Menu Name",
     "description": "Menu description will be here",
