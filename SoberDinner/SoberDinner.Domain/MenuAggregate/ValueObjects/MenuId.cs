@@ -4,7 +4,7 @@ namespace SoberDinner.Domain.MenuAggregate.ValueObjects
 {
     public sealed class MenuId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
         public MenuId(Guid value)
         {
             Value = value;
@@ -23,5 +23,11 @@ namespace SoberDinner.Domain.MenuAggregate.ValueObjects
         {
             yield return Value;
         }
+
+#pragma warning disable CS8618
+        private MenuId()
+        {
+        }
+#pragma warning restore CS8618
     }
 }

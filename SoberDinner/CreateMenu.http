@@ -1,37 +1,42 @@
 @host=http://localhost:7228
 @hostId=bcd
-@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmNjFkNThkMi00NjQ3LTQ1MDktYmExYy0wNTYyMWY1ZTBkOGMiLCJnaXZlbl9uYW1lIjoiU2FpZHVsIElzbGFtIiwiZmFtaWx5X25hbWUiOiJSYWppYiIsImp0aSI6IjI5ODVlYTA2LWYxM2QtNDc3Yy1iYzIwLTU2M2M5MzQ0M2Q3ZSIsImV4cCI6MTcxNjEwMjQ0MiwiaXNzIjoiU2FpZHVsIElzbGFtIFJhamliIiwiYXVkIjoiU29iZXIgRGlubmVyIn0.IWv-feJUzNfPL2bgFoKzr2hMsIX6gYdQXUAeyjtsSGg
-
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkNGVkZDFhOC0xNWY0LTRkZWQtODVlNS0zMmNmOWJhZGZjMTAiLCJnaXZlbl9uYW1lIjoiU2FpZHVsIElzbGFtIiwiZmFtaWx5X25hbWUiOiJSYWppYiIsImp0aSI6ImMxMGJjNzcyLTk0MzctNGI0NC04Mjg3LWIzMjJmODlhZjE3ZSIsImV4cCI6MTcxNjE5MzMyNCwiaXNzIjoiU2FpZHVsIElzbGFtIFJhamliIiwiYXVkIjoiU29iZXIgRGlubmVyIn0.FeZW5-LmSZJ2jQskjC9YpVGbnH_86v5M8geiQZx89nc
 
 POST {{host}}/hosts/{{hostId}}/menus
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "Yummy Menu",
-    "description": "A menu with yummy food",
-    "averageRating": 4.5,
-    "sections": [
+  "name": "Menu Name",
+  "description": "Menu description will be here",
+  "sections": [
+    {
+      "name": "1st Section Name",
+      "description": "1st section description will be here",
+      "items": [
         {
-            "id": { "value": "00000000-0000-0000-0000-000000000000" },
-            "name": "Fast food",
-            "description": "just to test",
-            "items": [
-                {
-                    "id": { "value": "00000000-0000-0000-0000-000000000000" },
-                    "name": "Pizza",
-                    "description": "Tasty pizza"
-                }
-            ]
+          "name": "1st item name",
+          "description": "1st item description will be here"
+        },
+        {
+          "name": "2nd item name",
+          "description": "2nd item description will be here"
         }
-    ],
-    "hostId": { "value": "00000000-0000-0000-0000-000000000000" },
-    "dinnerIds": [
-        { "value": "00000000-0000-0000-0000-000000000000" }
-    ],
-    "menuReviewIds": [
-        { "value": "00000000-0000-0000-0000-000000000000" }
-    ],
-    "createdDateTime": "2020-01-01T00:00:00.0000000Z",
-    "updatedDateTime": "2020-01-01T00:00:00.0000000Z"
+      ]
+    },
+    {
+      "name": "2nd Section Name",
+      "description": "2nd section description will be here",
+      "items": [
+        {
+          "name": "3rd item name",
+          "description": "3rd item description will be here"
+        },
+        {
+          "name": "4th item name",
+          "description": "4th item description will be here"
+        }
+      ]
+    }
+  ]
 }

@@ -8,5 +8,13 @@ namespace SoberDinner.Infrastructure.Persistence
         public SoberDinnerDbContext(DbContextOptions<SoberDinnerDbContext> options) : base(options) { }
 
         public DbSet<Menu> Menus { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .ApplyConfigurationsFromAssembly(typeof(SoberDinnerDbContext).Assembly);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

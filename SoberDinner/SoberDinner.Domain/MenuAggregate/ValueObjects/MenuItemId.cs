@@ -1,11 +1,10 @@
 ﻿using SoberDinner.Domain.Common.Models;
-using SoberDinner.Domain.MenuAggregate.ValueObjects;
 
 namespace SoberDinner.Domain.Menu.ValueObjects
 {
     public sealed class MenuItemId : ValueObject
     {
-        public Guid Value { get; }
+        public Guid Value { get; private set; }
         public MenuItemId(Guid value)
         {
             Value = value;
@@ -24,5 +23,11 @@ namespace SoberDinner.Domain.Menu.ValueObjects
         {
             yield return Value;
         }
+
+#pragma warning disable CS8618
+        private MenuItemId()
+        {
+        }
+#pragma warning restore CS8618
     }
 }
