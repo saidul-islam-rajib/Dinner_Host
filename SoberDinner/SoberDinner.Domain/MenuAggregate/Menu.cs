@@ -28,12 +28,12 @@ namespace SoberDinner.Domain.MenuAggregate
 
 
         private Menu(
-            MenuId menuId, 
-            HostId hostId,            
+            MenuId menuId,
+            HostId hostId,
             string name,
             string description,
             AverageRating averageRating,
-            List<MenuSection>? sections)
+            List<MenuSection> sections)
             : base(menuId)
         {
             HostId = hostId;
@@ -47,15 +47,17 @@ namespace SoberDinner.Domain.MenuAggregate
             HostId hostId,
             string name,
             string description,
-            List<MenuSection>? sections)
+            List<MenuSection> sections)
         {
-            return new Menu(
+            Menu response = new Menu(
                 MenuId.CreateUqique(),
                 hostId,
                 name,
                 description,
                 AverageRating.CreateNew(),
-                sections ?? new());
+                sections);
+
+            return response;
         }
     }
 }

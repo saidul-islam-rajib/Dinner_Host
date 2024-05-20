@@ -1,4 +1,5 @@
 ﻿using SoberDinner.Domain.Common.Models;
+using SoberDinner.Domain.MenuAggregate.ValueObjects;
 
 namespace SoberDinner.Domain.Menu.ValueObjects
 {
@@ -13,6 +14,10 @@ namespace SoberDinner.Domain.Menu.ValueObjects
         public static MenuItemId CreateUqique()
         {
             return new(Guid.NewGuid());
+        }
+        public static MenuItemId Create(Guid value)
+        {
+            return new MenuItemId(value);
         }
 
         public override IEnumerable<object> GetEqualityComponents()

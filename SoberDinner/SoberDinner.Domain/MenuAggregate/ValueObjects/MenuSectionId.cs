@@ -14,6 +14,10 @@ namespace SoberDinner.Domain.Menu.ValueObjects
         {
             return new(Guid.NewGuid());
         }
+        public static MenuSectionId Create(Guid value)
+        {
+            return new MenuSectionId(value);
+        }
 
         public override IEnumerable<object> GetEqualityComponents()
         {

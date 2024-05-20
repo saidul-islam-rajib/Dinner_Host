@@ -41,7 +41,7 @@ namespace SoberDinner.Domain.HostAggregate
         }
 
         public static Host Create(
-            string hostId,
+            Guid hostId,
             string firstName,
             string lastName,
             string profileImage,

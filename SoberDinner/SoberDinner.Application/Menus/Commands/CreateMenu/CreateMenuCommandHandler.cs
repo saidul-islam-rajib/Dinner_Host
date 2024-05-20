@@ -20,8 +20,8 @@ namespace SoberDinner.Application.Menus.Commands.CreateMenu
         {
             await Task.CompletedTask;
 
-            //1. Crate Menu
-            var menu = Menu.Create(
+            //1.Create Menu
+            Menu menu = Menu.Create(
                 hostId: HostId.Create(request.HostId),
                 name: request.Name,
                 description: request.Description,
@@ -33,7 +33,11 @@ namespace SoberDinner.Application.Menus.Commands.CreateMenu
                         item.Description)))));
 
             _menuRepository.Add(menu);
+
+
             return menu;
         }
+
+       
     }
 }

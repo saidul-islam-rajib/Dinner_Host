@@ -5,7 +5,7 @@ using SoberDinner.Domain.MenuAggregate;
 namespace SoberDinner.Application.Menus.Commands.CreateMenu
 {
     public record CreateMenuCommand(
-        string HostId,
+        Guid HostId,
         string Name,
         string Description,
         List<MenuSectionCommand> Sections) : IRequest<ErrorOr<Menu>>;
@@ -20,5 +20,4 @@ namespace SoberDinner.Application.Menus.Commands.CreateMenu
         string Name,
         string Description
     );
-
 }

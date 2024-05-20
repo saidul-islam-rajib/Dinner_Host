@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -9,6 +10,7 @@ using SoberDinner.Application.Common.Interfaces.Persistence;
 using SoberDinner.Application.Common.Interfaces.Services;
 using SoberDinner.Infrastructure.Authentication;
 using SoberDinner.Infrastructure.Persistence;
+using SoberDinner.Infrastructure.Persistence.Repositories;
 using System.Text;
 
 namespace SoberDinner.Infrastructure.Services
@@ -30,6 +32,9 @@ namespace SoberDinner.Infrastructure.Services
         public static IServiceCollection AddPersistance(
             this IServiceCollection services)
         {
+            services.AddDbContext<SoberDinnerDbContext>(options =>
+                options.UseSqlServer());
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IMenuRepository, MenuRepository>();
 

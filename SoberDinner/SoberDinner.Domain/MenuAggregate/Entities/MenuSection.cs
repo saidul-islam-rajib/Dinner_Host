@@ -26,12 +26,13 @@ namespace SoberDinner.Domain.MenuAggregate.Entities
         public static MenuSection Create(
             string name,
             string description,
-            List<MenuItem>? items)
+            List<MenuItem> items)
         {
-            return new(
+            MenuSection response = new MenuSection(
                 MenuSectionId.CreateUqique(),
                 name,
                 description);
+            return response;
         }
     }
 }

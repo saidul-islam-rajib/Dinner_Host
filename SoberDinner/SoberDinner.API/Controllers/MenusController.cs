@@ -21,21 +21,23 @@ namespace SoberDinner.API.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMenu(
             CreateMenuRequest request,
-            string hostId)
+            Guid hostId)
         {
             var command = _mapper.Map<CreateMenuCommand>((request, hostId));
             var createMenuResult = await _mediator.Send(command);
 
-            //return createMenuResult.Match(
-            //    menu => Ok(_mapper.Map<MenuResponse>(menu)),
-            //    errors => Problem(errors));
+            var response = createMenuResult.Match(
+                menu => Ok(_mapper.Map<MenuResponse>(menu)),
+                errors => Problem(errors));
 
-            if (createMenuResult.IsError)
-            {
-                return BadRequest(createMenuResult.Errors);
-            }
-            var createdMenu = createMenuResult.Value;
-            return Ok(createdMenu);
+            return response;
+
+            //if (createMenuResult.IsError)
+            //{
+            //    return BadRequest(createMenuResult.Errors);
+            //}
+            //var createdMenu = createMenuResult.Value;
+            //return Ok(createdMenu);
         }
     }
 }

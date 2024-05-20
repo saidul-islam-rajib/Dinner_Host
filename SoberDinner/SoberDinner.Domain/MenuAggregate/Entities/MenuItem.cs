@@ -9,7 +9,10 @@ namespace SoberDinner.Domain.MenuAggregate.Entities
         public string Name { get; }
         public string Description { get; }
 
-        private MenuItem(MenuItemId menuItemId, string name, string description)
+        private MenuItem(
+            MenuItemId menuItemId,
+            string name,
+            string description)
             : base(menuItemId)
         {
             Name = name;
@@ -20,10 +23,11 @@ namespace SoberDinner.Domain.MenuAggregate.Entities
             string name,
             string description)
         {
-            return new(
+            MenuItem response = new MenuItem(
                 MenuItemId.CreateUqique(),
                 name,
                 description);
+            return response;
         }
     }
 }

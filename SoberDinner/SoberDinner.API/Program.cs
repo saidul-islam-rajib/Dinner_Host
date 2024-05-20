@@ -9,8 +9,6 @@ var builder = WebApplication.CreateBuilder(args);
         .AddPresentation()
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
-
-
 }
 
 builder.Services.AddSingleton<MenuMappingConfig>();

@@ -1,7 +1,7 @@
 ﻿using SoberDinner.Application.Common.Intefaces.Persistence;
 using SoberDinner.Domain.Entities;
 
-namespace SoberDinner.Infrastructure.Persistence
+namespace SoberDinner.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {

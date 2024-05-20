@@ -7,7 +7,7 @@ using SoberDinner.API.Http;
 namespace SoberDinner.API.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class ApiController : ControllerBase
     {
         protected IActionResult Problem(List<Error> errors)
