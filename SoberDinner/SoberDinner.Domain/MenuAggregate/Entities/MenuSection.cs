@@ -16,11 +16,13 @@ namespace SoberDinner.Domain.MenuAggregate.Entities
         private MenuSection(
             MenuSectionId menuSectionId,
             string name,
-            string description)
+            string description,
+            List<MenuItem> items)
             : base(menuSectionId)
         {
             Name = name;
             Description = description;
+            _items = items;
         }
 
         public static MenuSection Create(
@@ -31,7 +33,8 @@ namespace SoberDinner.Domain.MenuAggregate.Entities
             MenuSection response = new MenuSection(
                 MenuSectionId.CreateUqique(),
                 name,
-                description);
+                description,
+                items);
             return response;
         }
     }

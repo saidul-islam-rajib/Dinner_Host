@@ -14,9 +14,9 @@ namespace SoberDinner.Infrastructure.Persistence.Repositories
 
         public void Add(Menu menu)
         {
-            //_dbContext.Add(menu);
+            _dbContext.Add(menu);
 
-            //_dbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }
