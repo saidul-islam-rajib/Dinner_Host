@@ -31,13 +31,6 @@ namespace SoberDinner.API.Controllers
                 errors => Problem(errors));
 
             return response;
-
-            //if (createMenuResult.IsError)
-            //{
-            //    return BadRequest(createMenuResult.Errors);
-            //}
-            //var createdMenu = createMenuResult.Value;
-            //return Ok(createdMenu);
         }
     }
 }
