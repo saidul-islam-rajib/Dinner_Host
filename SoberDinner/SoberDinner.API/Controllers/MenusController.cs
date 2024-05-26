@@ -2,11 +2,13 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SoberDinner.Application.Menus.Commands.CreateMenu;
+using SoberDinner.Application.Menus.Queries.MenuQueries;
 using SoberDinner.Contracts.Menus;
 
 namespace SoberDinner.API.Controllers
 {
-    [Route("hosts/{hostId}/menus")]
+    
+    
     public class MenusController : ApiController
     {
         private readonly IMapper _mapper;
@@ -19,6 +21,7 @@ namespace SoberDinner.API.Controllers
         }
 
         [HttpPost]
+        [Route("hosts/{hostId}/menus")]
         public async Task<IActionResult> CreateMenu(
             CreateMenuRequest request,
             Guid hostId)
@@ -31,6 +34,18 @@ namespace SoberDinner.API.Controllers
                 errors => Problem(errors));
 
             return response;
+        }
+
+        [HttpGet]
+        [Route("get-all-menus")]
+        public async Task<IActionResult> GetAllMenus()
+        {
+            var query = new GetAllMenusQuery();
+            var menus = await _mediator.Send(query);
+
+            var response = _mapper.Map<IEnumerable<MenuResponse>>(menus);
+
+            return Ok(response);
         }
     }
 }

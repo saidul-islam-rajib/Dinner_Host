@@ -6,6 +6,7 @@ using SoberDinner.API.Http;
 
 namespace SoberDinner.API.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
     public class ApiController : ControllerBase
