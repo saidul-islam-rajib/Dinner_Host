@@ -47,5 +47,21 @@ namespace SoberDinner.API.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetMenuById(Guid id)
+        {
+            var query = new GetMenuByIdQuery(id);
+            var menu = await _mediator.Send(query);
+
+            if (menu is null)
+            {
+                return NotFound();
+            }
+
+            var response = _mapper.Map<MenuResponse>(menu);
+            return Ok(response);
+        }
     }
 }

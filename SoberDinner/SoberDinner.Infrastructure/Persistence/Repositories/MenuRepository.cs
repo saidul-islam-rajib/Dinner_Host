@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SoberDinner.Application.Common.Interfaces.Persistence;
 using SoberDinner.Domain.MenuAggregate;
+using SoberDinner.Domain.MenuAggregate.ValueObjects;
 
 namespace SoberDinner.Infrastructure.Persistence.Repositories
 {
@@ -24,6 +25,14 @@ namespace SoberDinner.Infrastructure.Persistence.Repositories
         {
             var response = await _dbContext.Menus.ToListAsync();
             return response;
+        }
+
+        public async Task<Menu> GetMenuByIdAsync(Guid menuId)
+        {
+            return await _dbContext.Menus
+                .Include(menu => menu.Sections)
+                    .ThenInclude(section => section.Items)
+                .FirstOrDefaultAsync(menu => menu.Id.Equals(new MenuId(menuId)));
         }
     }
 }

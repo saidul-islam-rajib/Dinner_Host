@@ -6,5 +6,6 @@ namespace SoberDinner.Application.Common.Interfaces.Persistence
     {
         void Add(Menu menu);
         Task<IEnumerable<Menu>> GetAllMenusAsync();
+        Task<Menu> GetMenuByIdAsync(Guid menuId);
     }
 }
